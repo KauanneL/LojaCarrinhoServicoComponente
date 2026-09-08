@@ -1,34 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { LojaService } from '../loja-service';
 
 @Component({
   selector: 'app-produtos',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './produtos.html',
   styleUrl: './produtos.scss'
 })
 export class Produtos implements OnInit {
 
   produtos: any[] = [];
+  idBusca: number | null = null;
 
-  constructor(private lojaService: LojaService) {}
+  constructor(
+    private lojaService: LojaService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    console.log('1 - Componente iniciou');
     this.obterProdutos();
   }
 
   obterProdutos(): void {
-    console.log('2 - Chamando serviço');
-
     this.lojaService.obterTodos().subscribe({
       next: (dados: any) => {
-        console.log('3 - DADOS RECEBIDOS:', dados);
         this.produtos = dados;
-        console.log('4 - QUANTIDADE:', this.produtos.length);
+        this.cdr.detectChanges();
       },
       error: (erro) => {
         console.error('ERRO:', erro);
+      }
+    });
+  }
+
+  buscarProduto(): void {
+
+    if (this.idBusca === null) {
+      return;
+    }
+
+    this.lojaService.obterPorId(this.idBusca).subscribe({
+      next: (produto: any) => {
+        this.produtos = [produto];
+        this.cdr.detectChanges();
+      },
+      error: (erro) => {
+        console.error('Produto não encontrado:', erro);
+        this.produtos = [];
+        this.cdr.detectChanges();
       }
     });
   }

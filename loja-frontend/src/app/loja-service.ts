@@ -13,4 +13,8 @@ export class LojaService {
   obterTodos() {
     return this.http.get(this.url);
   }
+
+  obterPorId(id: number) {
+    return this.http.get(`${this.url}/${id}`);
+  }
 }

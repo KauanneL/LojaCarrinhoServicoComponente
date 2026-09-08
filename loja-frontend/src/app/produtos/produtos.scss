@@ -1,27 +1,76 @@
 h1 {
   text-align: center;
-  margin: 30px;
+  margin: 30px 0 10px;
+  font-size: 32px;
+}
+
+.busca {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.busca input {
+  padding: 10px;
+  width: 220px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.busca button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.busca button:hover {
+  background-color: #555;
+}
+
+p {
+  text-align: center;
 }
 
 .produto {
-  width: 300px;
-  margin: 20px auto;
+  display: inline-block;
+  vertical-align: top;
+
+  width: 280px;
+  min-height: 420px;
+
+  margin: 15px;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+
+  border: 1px solid #ddd;
+  border-radius: 12px;
+
+  background-color: white;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
   text-align: center;
 }
 
 .produto img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
+  margin-bottom: 10px;
 }
 
 .produto h2 {
   font-size: 20px;
+  margin: 10px 0;
 }
 
 .produto p {
+  text-align: left;
   margin: 8px 0;
+  line-height: 1.4;
 }

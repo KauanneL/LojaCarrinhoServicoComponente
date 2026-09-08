@@ -1,5 +1,20 @@
 <h1>Lista de Produtos</h1>
 
+<div class="busca">
+  <input
+    type="number"
+    [(ngModel)]="idBusca"
+    placeholder="Digite o ID do produto">
+
+  <button (click)="buscarProduto()">
+    Buscar
+  </button>
+
+  <button (click)="obterProdutos()">
+    Mostrar todos
+  </button>
+</div>
+
 <p>Quantidade de produtos: {{ produtos.length }}</p>
 
 @for (produto of produtos; track produto.id) {
