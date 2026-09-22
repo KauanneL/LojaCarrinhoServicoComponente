@@ -1,60 +1,84 @@
+:host {
+  display: block;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  font-family: Arial, sans-serif;
+}
+
 h1 {
   text-align: center;
-  margin: 30px 0 10px;
-  font-size: 32px;
+  color: #3f3d8f;
+  margin-bottom: 25px;
 }
 
 .busca {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 10px;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 .busca input {
-  padding: 10px;
   width: 220px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  padding: 10px;
+  border: 2px solid #d6d4f0;
+  border-radius: 8px;
   font-size: 15px;
+  outline: none;
+}
+
+.busca input:focus {
+  border-color: #6c63c9;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
 .busca button {
-  padding: 10px 16px;
-  border: none;
-  border-radius: 6px;
-  background-color: #333;
+  background: #6c63c9;
   color: white;
-  cursor: pointer;
 }
 
 .busca button:hover {
-  background-color: #555;
+  background: #554db0;
 }
 
 p {
   text-align: center;
 }
 
+app-exibe-carrinho {
+  display: block;
+  text-align: center;
+  margin: 20px 0 30px;
+}
+
 .produto {
   display: inline-block;
   vertical-align: top;
-
-  width: 280px;
-  min-height: 420px;
-
-  margin: 15px;
+  width: 250px;
+  min-height: 430px;
+  margin: 10px;
   padding: 20px;
+  box-sizing: border-box;
 
-  border: 1px solid #ddd;
-  border-radius: 12px;
-
-  background-color: white;
-
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border: 1px solid #e2e0f2;
+  border-radius: 14px;
 
   text-align: center;
+
+  box-shadow: 0 4px 12px rgba(63, 61, 143, 0.12);
+}
+
+.produto:hover {
+  box-shadow: 0 6px 18px rgba(63, 61, 143, 0.2);
 }
 
 .produto img {
@@ -65,6 +89,7 @@ p {
 }
 
 .produto h2 {
+  color: #3f3d8f;
   font-size: 20px;
   margin: 10px 0;
 }
@@ -72,5 +97,16 @@ p {
 .produto p {
   text-align: left;
   margin: 8px 0;
-  line-height: 1.4;
+  color: #444;
+}
+
+.produto button {
+  margin-top: 10px;
+  width: 100%;
+  background: #6c63c9;
+  color: white;
+}
+
+.produto button:hover {
+  background: #554db0;
 }

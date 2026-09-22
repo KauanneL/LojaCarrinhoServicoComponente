@@ -1,0 +1,49 @@
+<h1>Carrinho</h1>
+
+@if (lojaService.itens().length === 0) {
+
+  <p>O carrinho está vazio.</p>
+
+} @else {
+
+  @for (item of lojaService.itens(); track item.id) {
+
+    <div class="item">
+
+      <img
+        [src]="item.produto.foto"
+        [alt]="item.produto.nome">
+
+      <div>
+        <h2>{{ item.produto.nome }}</h2>
+
+        <p>
+          Preço: R$ {{ item.produto['preço'] }}
+        </p>
+
+        <p>
+          Quantidade: {{ item.quantidade }}
+        </p>
+
+        <button (click)="diminuir(item.id)">
+          -
+        </button>
+
+        <button (click)="aumentar(item.id)">
+          +
+        </button>
+
+        <button (click)="remover(item.id)">
+          Remover
+        </button>
+      </div>
+
+    </div>
+
+  }
+
+  <h2>
+    Total: R$ {{ total() }}
+  </h2>
+
+}

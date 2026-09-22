@@ -17,6 +17,8 @@
 
 <p>Quantidade de produtos: {{ produtos.length }}</p>
 
+<app-exibe-carrinho></app-exibe-carrinho>
+
 @for (produto of produtos; track produto.id) {
 
   <div class="produto">
@@ -32,6 +34,10 @@
     <p><strong>Preço:</strong> R$ {{ produto['preço'] }}</p>
 
     <p><strong>Quantidade:</strong> {{ produto.quantidade }}</p>
+
+    <button (click)="adicionarAoCarrinho(produto)">
+      Adicionar ao carrinho
+    </button>
 
   </div>
 
