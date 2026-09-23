@@ -4,6 +4,11 @@ import { Carrinho } from './carrinho/carrinho';
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'produtos',
+    pathMatch: 'full'
+  },
+  {
     path: 'produtos',
     component: Produtos
   },

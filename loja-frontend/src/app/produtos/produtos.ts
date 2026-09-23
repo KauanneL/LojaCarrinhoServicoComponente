@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LojaService, Produto } from '../loja-service';
+import { LojaService } from '../loja-service';
+import { Produto } from '../models/produto';
+import { Item } from '../models/item';
+import { CarrinhoService } from '../services/carrinho-service';
 import { ExibeCarrinho } from '../exibe-carrinho/exibe-carrinho';
 
 @Component({
@@ -14,7 +17,11 @@ export class Produtos implements OnInit {
   produtos: Produto[] = [];
   idBusca: number | null = null;
 
-  constructor(private lojaService: LojaService) {}
+  constructor(
+    private lojaService: LojaService,
+    private carrinhoService: CarrinhoService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.obterProdutos();
@@ -24,6 +31,7 @@ export class Produtos implements OnInit {
     this.lojaService.obterTodos().subscribe({
       next: (dados: Produto[]) => {
         this.produtos = dados;
+        this.cdr.detectChanges();
       },
       error: (erro) => {
         console.error('Erro ao buscar produtos:', erro);
@@ -48,7 +56,12 @@ export class Produtos implements OnInit {
   }
 
   adicionarAoCarrinho(produto: Produto): void {
-    this.lojaService.adicionarItem(produto);
-    console.log('Produto adicionado ao carrinho:', produto.nome);
+    const item: Item = {
+      id: produto.id,
+      produto: produto,
+      quantidade: 1
+    };
+
+    this.carrinhoService.adicionarItem(item);
   }
 }

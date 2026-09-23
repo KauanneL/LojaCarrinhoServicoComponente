@@ -1,6 +1,6 @@
 import { Component, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { LojaService } from '../loja-service';
+import { CarrinhoService } from '../services/carrinho-service';
 
 @Component({
   selector: 'app-exibe-carrinho',
@@ -11,11 +11,13 @@ import { LojaService } from '../loja-service';
 export class ExibeCarrinho {
 
   quantidadeItens = computed(() => {
-    return this.lojaService.itens().reduce(
+
+    return this.carrinhoService.itens().reduce(
       (total, item) => total + item.quantidade,
       0
     );
+
   });
 
-  constructor(private lojaService: LojaService) {}
+  constructor(private carrinhoService: CarrinhoService) {}
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { LojaService } from '../loja-service';
+import { CarrinhoService } from '../services/carrinho-service';
+import { Item } from '../models/item';
 
 @Component({
   selector: 'app-carrinho',
@@ -9,21 +10,21 @@ import { LojaService } from '../loja-service';
 })
 export class Carrinho {
 
-  constructor(public lojaService: LojaService) {}
+  constructor(public carrinhoService: CarrinhoService) {}
 
-  aumentar(id: number): void {
-    this.lojaService.aumentarQuantidade(id);
+  aumentar(item: Item): void {
+    this.carrinhoService.aumentarQuantidade(item);
   }
 
-  diminuir(id: number): void {
-    this.lojaService.diminuirQuantidade(id);
+  diminuir(item: Item): void {
+    this.carrinhoService.diminuirQuantidade(item);
   }
 
-  remover(id: number): void {
-    this.lojaService.removerItem(id);
+  remover(item: Item): void {
+    this.carrinhoService.removerItem(item);
   }
 
   total(): number {
-    return this.lojaService.obterTotal();
+    return this.carrinhoService.obterTotal();
   }
 }

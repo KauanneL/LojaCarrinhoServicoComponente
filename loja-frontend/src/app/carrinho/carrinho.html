@@ -1,12 +1,14 @@
-<h1>Carrinho</h1>
+<h1>Meu Carrinho</h1>
 
-@if (lojaService.itens().length === 0) {
+@if (carrinhoService.itens().length === 0) {
 
-  <p>O carrinho está vazio.</p>
+  <p class="vazio">
+    Seu carrinho está vazio.
+  </p>
 
 } @else {
 
-  @for (item of lojaService.itens(); track item.id) {
+  @for (item of carrinhoService.itens(); track item.id) {
 
     <div class="item">
 
@@ -14,36 +16,54 @@
         [src]="item.produto.foto"
         [alt]="item.produto.nome">
 
-      <div>
+      <div class="informacoes">
+
         <h2>{{ item.produto.nome }}</h2>
 
         <p>
-          Preço: R$ {{ item.produto['preço'] }}
+          <strong>Marca:</strong>
+          {{ item.produto.marca }}
         </p>
 
         <p>
-          Quantidade: {{ item.quantidade }}
+          <strong>Preço:</strong>
+          R$ {{ item.produto['preço'] }}
         </p>
 
-        <button (click)="diminuir(item.id)">
-          -
+        <p>
+          <strong>Subtotal:</strong>
+          R$ {{ item.produto['preço'] * item.quantidade }}
+        </p>
+
+        <div class="quantidade">
+
+          <button (click)="diminuir(item)">
+            -
+          </button>
+
+          <span>{{ item.quantidade }}</span>
+
+          <button (click)="aumentar(item)">
+            +
+          </button>
+
+        </div>
+
+        <button
+          class="excluir"
+          (click)="remover(item)">
+          Excluir item
         </button>
 
-        <button (click)="aumentar(item.id)">
-          +
-        </button>
-
-        <button (click)="remover(item.id)">
-          Remover
-        </button>
       </div>
 
     </div>
 
   }
 
-  <h2>
-    Total: R$ {{ total() }}
-  </h2>
+  <div class="total">
+    <strong>Total da compra:</strong>
+    R$ {{ total() }}
+  </div>
 
 }
