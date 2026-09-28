@@ -100,7 +100,7 @@ export class CarrinhoService {
   recuperarSessao() {
     let itens = localStorage.getItem('CARRINHO_LOJA_IFRN');
     if (itens) {
-      return JSON.parse(itens) as Item[];
+      return JSON.parse(itens);
     }
     return null;
   }
