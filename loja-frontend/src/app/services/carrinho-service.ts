@@ -10,6 +10,13 @@ export class CarrinhoService {
 
   readonly itens = this.#itens.asReadonly();
 
+  constructor() {
+    let itensSessao = this.recuperarSessao();
+    if(itensSessao) {
+      this.#itens.set(itensSessao);
+    }
+  }
+
   adicionarItem(item: Item): boolean {
 
     const itemExistente = this.#itens().find(
@@ -24,7 +31,8 @@ export class CarrinhoService {
     this.#itens.update(itens => [
       ...itens,
       item
-    ]);
+    ])
+    this.salvarSessao();
 
     return true;
   }
@@ -42,6 +50,7 @@ export class CarrinhoService {
       )
     );
 
+    this.salvarSessao();
     return true;
   }
 
@@ -58,6 +67,7 @@ export class CarrinhoService {
       )
     );
 
+    this.salvarSessao();
     return true;
   }
 
@@ -67,6 +77,7 @@ export class CarrinhoService {
       itens.filter(it => it.id !== item.id)
     );
 
+    this.salvarSessao();
     return true;
   }
 
@@ -77,5 +88,20 @@ export class CarrinhoService {
         total + item.produto['preço'] * item.quantidade,
       0
     );
+  }
+
+  salvarSessao() {
+    sessionStorage.setItem(
+      'CARRINHO_LOJA_IFRN',
+      JSON.stringify(this.#itens())
+    )
+  }
+
+  recuperarSessao() {
+    let itens = sessionStorage.getItem('CARRINHO_LOJA_IFRN');
+    if (itens) {
+      return JSON.parse(itens) as Item[];
+    }
+    return null;
   }
 }
