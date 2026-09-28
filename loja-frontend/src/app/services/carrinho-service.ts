@@ -91,14 +91,14 @@ export class CarrinhoService {
   }
 
   salvarSessao() {
-    sessionStorage.setItem(
+    localStorage.setItem(
       'CARRINHO_LOJA_IFRN',
       JSON.stringify(this.#itens())
     )
   }
 
   recuperarSessao() {
-    let itens = sessionStorage.getItem('CARRINHO_LOJA_IFRN');
+    let itens = localStorage.getItem('CARRINHO_LOJA_IFRN');
     if (itens) {
       return JSON.parse(itens) as Item[];
     }
